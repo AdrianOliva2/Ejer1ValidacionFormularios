@@ -1,0 +1,10 @@
+<div class="card text-center">
+  <div class="card-body">
+    <h4 class="card-title">{{joke.getSetup()}}</h4>
+    <p class="card-text" [hidden]="joke.isHide()">{{joke.getPunchline()}}</p>
+    <div class="d-grid gap-2">
+      <button type="button" name="" id="" class="btn btn-primary mt-2" (click)="joke.toggle()">Tell Me</button>
+      <button class="btn btn-danger" (click)="removeJoke(joke)">Delete Me</button>
+    </div>
+  </div>
+</div>

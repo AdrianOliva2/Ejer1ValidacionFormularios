@@ -1,0 +1,9 @@
+<div class="card text-left mt-4">
+    <div class="card-body">
+        <form class="form-group" [formGroup]="form" novalidate>
+            <input type="text" class="form-control" name="" id="" placeholder="Setup" #setup formControlName="broma" [ngClass]="{'form-control-success':form.get('broma')?.valid, 'form-control-error':!form.get('broma')?.valid && form.get('broma')?.dirty}">
+            <input type="text" class="form-control mt-2" name="" id="" placeholder="Punchline" #punchline formControlName="respuesta" [ngClass]="{'form-control-success':form.get('respuesta')?.valid, 'form-control-error':!form.get('respuesta')?.valid && form.get('respuesta')?.dirty}" >
+            <button type="button" name="" id="" class="btn btn-success btn-block mt-2" (click)="createJoke(setup, punchline)" [disabled]="!form.valid">Create joke</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+ <div *ngFor="let j of jokeService.getJokes()" class="mt-2">
+    <app-joke [joke]="j" (childJoke)="removeJoke($event)"></app-joke>
+</div>
