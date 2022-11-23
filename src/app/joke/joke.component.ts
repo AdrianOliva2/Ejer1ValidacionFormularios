@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Joke } from '../joke';
+import { JokeService } from '../joke.service';
 
 @Component({
   selector: 'app-joke',
@@ -10,17 +11,14 @@ export class JokeComponent implements OnInit {
 
   @Input('joke') joke!: Joke;
 
-  @Output('childJoke') childJoke: EventEmitter<Joke>;
-
-  constructor() {
-    this.childJoke = new EventEmitter();
+  constructor(private jokeService: JokeService) {
   }
 
   ngOnInit(): void {
   }
 
   public removeJoke(joke: Joke) {
-    this.childJoke.emit(joke);
+    this.jokeService.removeJoke(joke)
   }
 
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Joke } from './joke';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { Joke } from './joke';
 export class JokeService {
 
   private jokes: Joke[];
+  private jokesSubject: Subject<Joke[]>;
 
   constructor() {
     this.jokes = [
@@ -14,10 +16,16 @@ export class JokeService {
       new Joke("What kind of cheese do you use to disguise a small horse?", "Mask-a-pony (Mascarpone)"),
       new Joke("A kid threw a lump of cheddar at me", "I thought Thats not very mature")
     ];
+
+    this.jokesSubject = new Subject();
   }
 
   public getJokes(): Joke[] {
-    return this.jokes;
+    return [...this.jokes]
+  }
+
+  public getJokes$(): Observable<Joke[]> {
+    return this.jokesSubject.asObservable();
   }
 
   public removeJoke(joke?: Joke) {
@@ -30,9 +38,12 @@ export class JokeService {
         }
       )
     }
+
+    this.jokesSubject.next([...this.jokes]);
   }
 
   public addJoke(joke: Joke) {
     this.jokes.unshift(joke);
+    this.jokesSubject.next([...this.jokes]);
   }
 }

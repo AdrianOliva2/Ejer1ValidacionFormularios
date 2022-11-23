@@ -17,6 +17,7 @@ export class JokeFormComponent implements OnInit {
       broma: new FormControl('',[Validators.required, Validators.minLength(4)]),
       respuesta: new FormControl('',[Validators.required, Validators.minLength(4)])
     });
+    this.form.controls['broma']
   }
 
   ngOnInit(): void {

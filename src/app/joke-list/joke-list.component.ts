@@ -9,12 +9,17 @@ import { JokeService } from '../joke.service';
 })
 export class JokeListComponent implements OnInit {
   
+  private jokes!: Joke[]; 
+
   constructor(public jokeService: JokeService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.jokes = this.jokeService.getJokes();
+    this.jokeService.getJokes$().subscribe(jokes => this.jokes = jokes)
+  }
 
-  public removeJoke(e: Joke) {
-    this.jokeService.removeJoke(e);
+  public getJokes(): Joke[] {
+    return this.jokes;
   }
 
 }
